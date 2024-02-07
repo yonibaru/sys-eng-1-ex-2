@@ -2,6 +2,8 @@
 #include <limits.h>
 #include "my_mat.h"
 
+#define SIZE 10
+
 //THIS IS NOT A DIRECTED GRAPH!!!!! UNDIRECTED
 
 void floydWarshal(int matrix[10][10], int dist[10][10]){
@@ -47,10 +49,10 @@ int pathExists(int matrix[10][10]){
     scanf("%d",&j);
 
     if(matrix[i][j] != INT_MAX){
-        printf("TRUE");
+        printf("True\n");
         return TRUE;
     } else{
-        printf("FALSE");
+        printf("False\n");
         return FALSE;
     }
 
@@ -61,10 +63,10 @@ int shortestPath(int matrix[10][10]){
     scanf("%d",&i);
     scanf("%d",&j);
     if(matrix[i][j] == INT_MAX){
-        printf("No ShortestPath");
+        printf("-1\n");
         return -1;
     } else{
-        printf("ShortestPath: %d", matrix[i][j]);
+        printf("%d\n", matrix[i][j]);
         return matrix[i][j];
     }
 }
