@@ -1,19 +1,70 @@
 #include <stdio.h>
+#include <limits.h>
 #include "my_mat.h"
 
 //THIS IS NOT A DIRECTED GRAPH!!!!! UNDIRECTED
 
-int editMatrix(int matrix[10][10],int v1, int v2, int w){
-    if(v1 == v2){
-        printf("A vertex can't have an edge to himself.");
+void floydWarshal(int matrix[10][10], int dist[10][10]){
+
+    //Copy matrix into dist.
+    for(int i = 0; i < SIZE ; i++){
+        for(int j = 0; j < SIZE; j++){
+            dist[i][j] = matrix[i][j];
+        }
+    }
+
+    //The Floyd-Warshall Algorithm
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                for (int k = 0; k < SIZE; k++) {
+                    if(dist[i][j] > dist[i][k] + dist[k][j] && dist[i][k] != INT_MAX && dist[k][j] != INT_MAX){
+                        //We have to insure dist[k][j] and dist[i][k] are not individually equal to INT_MAX because summing them up could result in unexpected errors.
+                        dist[i][j] = dist[i][k] + dist[k][j];
+                    }
+                }
+            }
+        }
+
+}
+
+void enterMatrix(int matrix[10][10]){
+    for(int i = 0;i< SIZE;i++){
+        for(int j = 0;j < SIZE; j++){
+            scanf("%d",&matrix[i][j]);
+
+            // We are going to use the Floyd-Warshall Algorithm, so we need prepare our matrix accordingly.
+            if(i != j && matrix[i][j] == 0){
+                matrix[i][j] = INT_MAX;
+            }
+        }
+    }
+
+}
+
+int pathExists(int matrix[10][10]){
+    int i,j;
+    scanf("%d",&i);
+    scanf("%d",&j);
+
+    if(matrix[i][j] != INT_MAX){
+        printf("TRUE");
+        return TRUE;
+    } else{
+        printf("FALSE");
         return FALSE;
     }
-}
-
-int pathExists(int matrix[10][10], int i, int j){
 
 }
 
-int shortestPath(int matrix[10][10], int i, int j){
-    
+int shortestPath(int matrix[10][10]){
+    int i,j;
+    scanf("%d",&i);
+    scanf("%d",&j);
+    if(matrix[i][j] == INT_MAX){
+        printf("No ShortestPath");
+        return -1;
+    } else{
+        printf("ShortestPath: %d", matrix[i][j]);
+        return matrix[i][j];
+    }
 }
