@@ -67,8 +67,44 @@
 // }
 
 
+
+
 int knapSack(int weights[], int values[] , int selected_bool[]){
-    //DP Approach
+    //DP Bottom-up approach
+
+    int DP[MAX_ITEMS + 1][MAX_WEIGHT + 1];
+
+    //Since this array is local, the initial values of every cell are not 0 but rather garbage values. 
+    //Therefore, we need to set every cell in the first row and column to 0.
+
+    for (int i = 1; i <= MAX_ITEMS; i++){
+        DP[i][0] = 0;
+    }
+    for (int j = 0; j <= MAX_WEIGHT; j++){
+        DP[0][j] = 0;
+    }
+
+    //Generating our DP Table.
+    for (int i = 1; i <= MAX_ITEMS; i++) {
+        for (int j = 1; j <= MAX_WEIGHT; j++) {
+            if (weights[i-1] > j) {
+                DP[i][j] = DP[i-1][j];
+            } else {
+                int index = j - weights[i-1];
+
+                int includeNext = DP[i-1][index] + values[i-1];
+                int notIncludeNext = DP[i-1][j];
+
+                if(notIncludeNext > includeNext){
+                    DP[i][j] = notIncludeNext;
+                } else{
+                    DP[i][j] = includeNext;
+                }
+            }
+        }
+    }
+
+    return DP[MAX_ITEMS][MAX_WEIGHT]; 
 }
 
 void enterItem(int weights[MAX_ITEMS], int values[MAX_ITEMS], char item){
@@ -103,8 +139,7 @@ int main(){
 
     int weights[MAX_ITEMS];
     int values[MAX_ITEMS];
-    double ratios[MAX_ITEMS];
-    int selected_bool[MAX_ITEMS];
+    int selected_bool[] = {0,0,0,0,0};
 
     int maxProfit;
 
@@ -150,16 +185,6 @@ int main(){
         }
 
         if(inputCount >= 5){
-               printf("WEIGHTS:");
-                for (int i = 0; i < 5; i++) {
-                    printf(" %d", weights[i]);
-                }
-                printf("\n");
-                printf("VALUES:");
-                for (int i = 0; i < 5; i++) {
-                    printf(" %d", values[i]);
-                }
-                printf("\n");
             break; //Exit loop
         }
     }
@@ -170,8 +195,9 @@ int main(){
     int temp;
     for(int i = 0; i < MAX_ITEMS; i++){
         if(selected_bool[i] == 1){
-            result[temp] = items[i];
-            temp++;
+            // result[temp] = items[i];
+            // temp++;
+            printf("ITEM: %c\n", items[i]);
         }
     }
 
