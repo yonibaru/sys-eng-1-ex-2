@@ -50,7 +50,6 @@ int main(){
                 break;
             case 'D':
             case 'd':
-                printf("function D executed\n");
                 return 0;
             default:
                 printf("Invalid input. Please enter a char A-D.\n");

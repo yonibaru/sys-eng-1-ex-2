@@ -3,9 +3,7 @@
 
 // Define constants
 #define TRUE 1
-
 #define FALSE 0
-#define SIZE 10
 
 //my_mat.c
 void floydWarshal(int matrix[10][10],int dist[10][10]);
