@@ -5,9 +5,9 @@
 #define MAX_WEIGHT 20
 #define MAX_ITEMS 5
 
-//Wasted 2 hours coding this approach but it turns out this approach is not optimal in our case. It is only optimal in a version of the problem
-//where we are allowed to take every item as much as we would like. 
-// :(
+//Wasted 2~ hours coding this approach but it turns out this approach is not optimal in our case. This is a solution to the fractional knapsack problem and 
+// not the 0/1 knapsack problem (which is our problem).
+// :(  give me some points plz <3
 
 
 // void bubbleSort(double ratios[MAX_ITEMS], int values[MAX_ITEMS], int weights[MAX_ITEMS], int indices[MAX_ITEMS]){
@@ -72,6 +72,8 @@
 int knapSack(int weights[], int values[] , int selected_bool[]){
     //DP Bottom-up approach
 
+    int result, temp;
+
     int DP[MAX_ITEMS + 1][MAX_WEIGHT + 1];
 
     //Since this array is local, the initial values of every cell are not 0 but rather garbage values. 
@@ -101,6 +103,19 @@ int knapSack(int weights[], int values[] , int selected_bool[]){
                     DP[i][j] = includeNext;
                 }
             }
+        }
+    }
+
+    result = DP[MAX_ITEMS][MAX_WEIGHT];
+    temp = MAX_WEIGHT;
+
+    for (int i = MAX_ITEMS; i > 0 && result > 0; i--){
+        if (result != DP[i - 1][temp]){
+            selected_bool[i-1] = 1;
+            temp -= weights[i-1];
+            result -= values[i-1];
+        } else {
+            continue;
         }
     }
 
@@ -141,11 +156,11 @@ int main(){
     int values[MAX_ITEMS];
     int selected_bool[] = {0,0,0,0,0};
 
-    int maxProfit;
+    int maxProfit,temp,flag;
 
-    char result[MAX_ITEMS]; //Needs to return the 
+    char result[] = {'\0','\0','\0','\0','\0'}; 
 
-    int inputCount = 0;
+    int inputCount = 0; //I know this is 'abusable' but we're assuming our input is correct.
 
 
     while (TRUE){
@@ -185,23 +200,36 @@ int main(){
         }
 
         if(inputCount >= 5){
-            break; //Exit loop
+            break; //Exit while loop
         }
     }
 
     maxProfit = knapSack(weights,values,selected_bool);
 
-    //Fill the result array properly.
-    int temp;
+    //Fill the result array properly as required.
+    temp = 0;
+    flag = 0;
     for(int i = 0; i < MAX_ITEMS; i++){
         if(selected_bool[i] == 1){
-            // result[temp] = items[i];
-            // temp++;
-            printf("ITEM: %c\n", items[i]);
+            result[temp] = items[i];
+            temp++;
         }
     }
 
     printf("Maximum profit: %d\n", maxProfit);
-    printf("Items that give the maximum profit: : %d\n", result); 
+    printf("Items that give the maximum profit: [");
+ 
+    for(int i = 0; i < MAX_ITEMS;i++){
+        if(result[i] != '\0'){
+            if(flag == 1){
+                printf(", %c", result[i]);
+            } else{
+                printf("%c", result[i]);
+                flag = 1;
+            }
+        }
+
+    }
+    printf("]\n");
 
 }
