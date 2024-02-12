@@ -11,7 +11,12 @@ void floydWarshal(int matrix[10][10], int dist[10][10]){
     //Copy matrix into dist.
     for(int i = 0; i < SIZE ; i++){
         for(int j = 0; j < SIZE; j++){
-            dist[i][j] = matrix[i][j];
+            //we need prepare our matrix accordingly.
+            if(i != j && matrix[i][j] == 0){
+                dist[i][j] = INT_MAX;
+            } else{
+                dist[i][j] = matrix[i][j];
+            }
         }
     }
 
@@ -30,40 +35,35 @@ void floydWarshal(int matrix[10][10], int dist[10][10]){
 }
 
 void enterMatrix(int matrix[10][10]){
-    for(int i = 0;i< SIZE;i++){
+    for(int i = 0;i < SIZE;i++){
         for(int j = 0;j < SIZE; j++){
             scanf("%d",&matrix[i][j]);
-
-            // We are going to use the Floyd-Warshall Algorithm, so we need prepare our matrix accordingly.
-            if(i != j && matrix[i][j] == 0){
-                matrix[i][j] = INT_MAX;
-            }
             printf("%d\n",matrix[i][j]);
         }
     }
 
 }
 
-void pathExists(int matrix[10][10]){
+void pathExists(int dist[10][10]){
     int i,j;
     scanf("%d",&i);
     scanf("%d",&j);
 
-    if(matrix[i][j] != INT_MAX){
-        printf("True\n");
-    } else{
+    if(dist[i][j] == INT_MAX){
         printf("False\n");
+    } else{
+        printf("True\n");
     }
 
 }
 
-void shortestPath(int matrix[10][10]){
+void shortestPath(int dist[10][10]){
     int i,j;
     scanf("%d",&i);
     scanf("%d",&j);
-    if(matrix[i][j] == INT_MAX){
+    if(dist[i][j] == INT_MAX){
         printf("%d\n", -1);
     } else{
-        printf("%d\n", matrix[i][j]);
+        printf("%d\n", dist[i][j]);
     }
 }
