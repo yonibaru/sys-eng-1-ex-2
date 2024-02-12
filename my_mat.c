@@ -4,7 +4,6 @@
 
 #define SIZE 10
 
-//THIS IS NOT A DIRECTED GRAPH!!!!! UNDIRECTED
 
 void floydWarshal(int matrix[10][10], int dist[10][10]){
 
@@ -38,10 +37,8 @@ void enterMatrix(int matrix[10][10]){
     for(int i = 0;i < SIZE;i++){
         for(int j = 0;j < SIZE; j++){
             scanf("%d",&matrix[i][j]);
-            printf("%d\n",matrix[i][j]);
         }
     }
-
 }
 
 void pathExists(int dist[10][10]){
@@ -49,7 +46,7 @@ void pathExists(int dist[10][10]){
     scanf("%d",&i);
     scanf("%d",&j);
 
-    if(dist[i][j] == INT_MAX){
+    if(dist[i][j] == INT_MAX || i == j){
         printf("False\n");
     } else{
         printf("True\n");
@@ -61,7 +58,7 @@ void shortestPath(int dist[10][10]){
     int i,j;
     scanf("%d",&i);
     scanf("%d",&j);
-    if(dist[i][j] == INT_MAX){
+    if(dist[i][j] == INT_MAX || dist[i][j] == 0){
         printf("%d\n", -1);
     } else{
         printf("%d\n", dist[i][j]);
