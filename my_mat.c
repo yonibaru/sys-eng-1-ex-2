@@ -28,6 +28,8 @@ void floydWarshal(int matrix[10][10], int dist[10][10]){
                         if (dist[i][j] > dist[i][k] + dist[k][j]) {
                             dist[i][j] = dist[i][k] + dist[k][j];
                         }
+                    }else{
+                        continue;
                     }
                 }
             }
