@@ -20,27 +20,18 @@ void floydWarshal(int matrix[10][10], int dist[10][10]){
     }
 
     //The Floyd-Warshall Algorithm
-        // for (int i = 0; i < SIZE; i++) {
-        //     for (int j = 0; j < SIZE; j++) {
-        //         for (int k = 0; k < SIZE; k++) {
-        //             if(dist[i][j] > dist[i][k] + dist[k][j] && dist[i][k] != INT_MAX && dist[k][j] != INT_MAX && j != i && k != i && j != k) {
-        //                 //We have to insure dist[k][j] and dist[i][k] are not individually equal to INT_MAX because summing them up could result in unexpected errors.
-        //                 dist[i][j] = dist[i][k] + dist[k][j];
-        //             }
-        //         }
-        //     }
-        // }
-
-          for (int k = 0; k < SIZE; k++) {
-            for (int i = 0; i < SIZE; i++){
-                for (int j = 0; j < SIZE; j++){
-                     if (dist[i][k] == INT_MAX || dist[k][j] == INT_MAX)
-                          continue;
-                     if (k != i && k != j && i != j)
-                         dist[i][j] = (dist[i][j] < dist[i][k] + dist[k][j]) ? dist[i][j] : dist[i][k] + dist[k][j];
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                for (int k = 0; k < SIZE; k++) {
+                    if (dist[i][k] != INT_MAX && dist[k][j] != INT_MAX && j != i && k != i && j != k) {
+                        //We have to insure dist[k][j] and dist[i][k] are not individually equal to INT_MAX because summing them up could result in unexpected errors.
+                        if (dist[i][j] > dist[i][k] + dist[k][j]) {
+                            dist[i][j] = dist[i][k] + dist[k][j];
+                        }
                     }
                 }
             }
+        }
 
 }
 
