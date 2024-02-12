@@ -106,6 +106,8 @@ int knapSack(int weights[], int values[] , int selected_bool[]){
         }
     }
 
+
+    //Properly filling the selected_bool array.
     result = DP[MAX_ITEMS][MAX_WEIGHT];
     temp = MAX_WEIGHT;
 
@@ -125,19 +127,19 @@ int knapSack(int weights[], int values[] , int selected_bool[]){
 void enterItem(int weights[MAX_ITEMS], int values[MAX_ITEMS], char item){
     int i;
     switch(item){
-        case 'A':
+        case 'a':
             i = 0;
             break;
-        case 'B':
+        case 'b':
             i = 1;
             break;
-        case 'C':
+        case 'c':
             i = 2;
             break;
-        case 'D':
+        case 'd':
             i = 3;
             break;
-        case 'E':
+        case 'e':
             i = 4;
             break;
     }
@@ -150,7 +152,7 @@ void enterItem(int weights[MAX_ITEMS], int values[MAX_ITEMS], char item){
 
 int main(){
 
-    char items[] = {'A','B','C','D','E'};
+    char items[] = {'a','b','c','d','e'};
 
     int weights[MAX_ITEMS];
     int values[MAX_ITEMS];
@@ -206,7 +208,7 @@ int main(){
 
     maxProfit = knapSack(weights,values,selected_bool);
 
-    //Fill the result array properly as required.
+    //Fill the result array properly as required, empty slots remain '\0' (NULL CHAR)
     temp = 0;
     flag = 0;
     for(int i = 0; i < MAX_ITEMS; i++){
@@ -217,19 +219,21 @@ int main(){
     }
 
     printf("Maximum profit: %d\n", maxProfit);
-    printf("Items that give the maximum profit: [");
- 
+    // printf("Items that give the maximum profit: [");
+    printf("Selected items: ");
     for(int i = 0; i < MAX_ITEMS;i++){
         if(result[i] != '\0'){
-            if(flag == 1){
-                printf(", %c", result[i]);
-            } else{
-                printf("%c", result[i]);
-                flag = 1;
-            }
+            printf("%c ", result[i]);
+            // if(flag == 1){
+            //     printf(", %c", result[i]);
+            // } else{
+            //     printf("%c", result[i]);
+            //     flag = 1;
+            // }
         }
 
     }
-    printf("]\n");
+    printf("\n");
+    // printf("]\n");
 
 }
