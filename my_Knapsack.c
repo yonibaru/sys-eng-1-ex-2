@@ -220,10 +220,10 @@ int main(){
 
     printf("Maximum profit: %d\n", maxProfit);
     // printf("Items that give the maximum profit: [");
-    printf("Selected items: ");
+    printf("Selected items:");
     for(int i = 0; i < MAX_ITEMS;i++){
         if(result[i] != '\0'){
-            printf("%c ", result[i]);
+            printf(" %c", result[i]);
             // if(flag == 1){
             //     printf(", %c", result[i]);
             // } else{
@@ -233,7 +233,6 @@ int main(){
         }
 
     }
-    printf("\n");
     // printf("]\n");
 
 }
