@@ -5,23 +5,19 @@
 
 #define SIZE 10
 
-char currentFunction;
 
 int main(){
 
     int mainMatrix[SIZE][SIZE];
     int dist[SIZE][SIZE]; //distance matrix, used for our Floyd-Warshall Algorithm which helps us in implementing 2 functions.
 
+    char currentFunction;
 
     while (TRUE){
         scanf(" %c", &currentFunction);
-        //if input A enter v1,v2 and weight... debug and print if successful.
-        //
-        //if input D ... break..
-
+ 
         switch (currentFunction){
             case 'A':
-            case 'a':
                 enterMatrix(mainMatrix);
                 floydWarshal(mainMatrix,dist);
 
@@ -38,18 +34,15 @@ int main(){
                 //     {41, 1, 22, 38, 9, 1, 31, 40, 11, 0}
                 //     };
                 // floydWarshal(testMatrix,dist);
-                 
+
                 break;
             case 'B':
-            case 'b':
                 pathExists(dist);
                 break;
             case 'C':
-            case 'c':
                 shortestPath(dist);
                 break;
             case 'D':
-            case 'd':
                 return 0;
             default:
                 break;
