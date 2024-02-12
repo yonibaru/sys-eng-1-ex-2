@@ -23,15 +23,16 @@ void floydWarshal(int matrix[10][10], int dist[10][10]){
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 for (int k = 0; k < SIZE; k++) {
-                    if (dist[i][k] != INT_MAX || dist[k][j] != INT_MAX) {
+                    if (dist[i][k] != INT_MAX && dist[j][i] != INT_MAX && i != j && i != k && j != k) {
                         //We have to insure dist[k][j] and dist[i][k] are not individually equal to INT_MAX because summing them up could result in unexpected errors.
-                        continue;
-                    } else if ((dist[i][j] > dist[i][k] + dist[k][j]) && k != i && k != j && i != j) {
-                            dist[i][j] = dist[i][k] + dist[k][j];
+                        if (dist[j][k] > dist[j][i] + dist[i][k]) {
+                            dist[j][k] = dist[j][i] + dist[i][k];
+                        }
                     }
                 }
             }
         }
+
 
 }
 
