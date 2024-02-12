@@ -43,30 +43,26 @@ void enterMatrix(int matrix[10][10]){
 
 }
 
-int pathExists(int matrix[10][10]){
+void pathExists(int matrix[10][10]){
     int i,j;
     scanf("%d",&i);
     scanf("%d",&j);
 
     if(matrix[i][j] != INT_MAX){
         printf("True\n");
-        return TRUE;
     } else{
         printf("False\n");
-        return FALSE;
     }
 
 }
 
-int shortestPath(int matrix[10][10]){
+void shortestPath(int matrix[10][10]){
     int i,j;
     scanf("%d",&i);
     scanf("%d",&j);
     if(matrix[i][j] == INT_MAX){
-        printf("-1\n");
-        return -1;
+        printf("%d\n", -1);
     } else{
         printf("%d\n", matrix[i][j]);
-        return matrix[i][j];
     }
 }
