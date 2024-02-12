@@ -38,6 +38,7 @@ void enterMatrix(int matrix[10][10]){
             if(i != j && matrix[i][j] == 0){
                 matrix[i][j] = INT_MAX;
             }
+            printf("%d",matrix[i][j]);
         }
     }
 
