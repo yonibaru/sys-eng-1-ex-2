@@ -158,7 +158,7 @@ int main(){
     int values[MAX_ITEMS];
     int selected_bool[] = {0,0,0,0,0};
 
-    int maxProfit,temp,flag;
+    int maxProfit,temp;
 
     char result[] = {'\0','\0','\0','\0','\0'}; 
 
@@ -210,7 +210,6 @@ int main(){
 
     //Fill the result array properly as required, empty slots remain '\0' (NULL CHAR)
     temp = 0;
-    flag = 0;
     for(int i = 0; i < MAX_ITEMS; i++){
         if(selected_bool[i] == 1){
             result[temp] = items[i];
@@ -219,20 +218,12 @@ int main(){
     }
 
     printf("Maximum profit: %d\n", maxProfit);
-    // printf("Items that give the maximum profit: [");
     printf("Selected items:");
     for(int i = 0; i < MAX_ITEMS;i++){
         if(result[i] != '\0'){
             printf(" %c", result[i]);
-            // if(flag == 1){
-            //     printf(", %c", result[i]);
-            // } else{
-            //     printf("%c", result[i]);
-            //     flag = 1;
-            // }
-        }
 
+        }
     }
-    // printf("]\n");
 
 }
