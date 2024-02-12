@@ -42,10 +42,12 @@ int main(){
                 break;
             case 'B':
             case 'b':
+                printf("\n");
                 pathExists(dist);
                 break;
             case 'C':
             case 'c':
+                printf("\n");
                 shortestPath(dist);
                 break;
             case 'D':
